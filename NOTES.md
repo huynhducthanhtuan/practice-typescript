@@ -91,4 +91,47 @@ enum Status {
 console.log(Status.Todo, Status.Doing, Status.Done); // Todo Doing Done
 
 
-## 9. 
+## 9. Type Aliases
+type CarYear = number
+type CarType = string
+type Car = {
+  year: CarYear,
+  type: CarType,
+}
+
+const carYear: CarYear = 2001
+const carType: CarType = "Toyota"
+const car: Car = {
+  year: carYear,
+  type: carType
+};
+
+
+## 10. Interfaces
+interface Rectangle {
+  height: number,
+  width: number
+}
+
+const rectangle: Rectangle = {
+  height: 20,
+  width: 10
+};
+
+interface ColorRectangle extends Rectangle {
+  color: string
+}
+
+const colorRectangle: ColorRectangle = {
+  height: 20,
+  width: 10,
+  color: "red"
+};
+
+
+## 11. Union Types: Union | (OR)
+const a: string | number = 1
+
+function printCode (code: string | number) {
+  return code;
+}
