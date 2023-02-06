@@ -135,3 +135,40 @@ const a: string | number = 1
 function printCode (code: string | number) {
   return code;
 }
+
+
+## 12. Function
+## Return Type
+// Optional parameter
+function sum1 (a: number, b?: number): number {
+    return a + (b || 0);
+}
+
+// Default parameter value
+function sum2 (a: number, b: number = 0): number {
+    return a + b;
+}
+
+## Void Return Type
+function print (): void {
+  console.log("Hello");
+}
+
+## Type Alias
+type Square = (value: number) => number;
+
+const squareFunction: Square = (value) => value ** 2;
+
+
+## 13. Casting: the process of overriding a type
+## Casting with as
+let x: unknown = "hello";
+console.log(typeof (x as string)); // string
+
+## Casting with <>
+let y: unknown = "hello";
+console.log(typeof (<string>y)); // string
+
+## Force Casting: as unknown, as target type
+let x = 'hello';
+console.log(((x as unknown) as number));

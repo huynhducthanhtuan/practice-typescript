@@ -6,4 +6,5 @@ export function hello(who: string = world): string {
 
 console.log(hello());
 
-console.log();
+let x = 1;
+console.log(typeof (x as unknown as string)); // string
