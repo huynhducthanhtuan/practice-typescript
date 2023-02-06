@@ -69,7 +69,9 @@ const a2: number = 1 as const;
 ## 6. tupple: typed array
 ```
 const tuple: [number, boolean, string] = [5, true, "A"];
+
 tuple.push("B");
+
 console.log(tuple); // [ 5, true, 'A', 'B' ]
 ```
 
@@ -92,34 +94,27 @@ enum STT1 {
     Second,
     Third
 }
-
 console.log(STT1.First, STT1.Second, STT1.Third); // 0 1 2
-
 
 enum STT2 {
     First = 1,
     Second,
     Third
 }
-
 console.log(STT2.First, STT2.Second, STT2.Third); // 1 2 3
-
 
 enum STT3 {
     First = 1,
     Second = 3,
     Third
 }
-
 console.log(STT3.First, STT3.Second, STT3.Third); // 1 3 4
-
 
 enum STT4 {
     First = 1,
     Second = 3,
     Third = 5
 }
-
 console.log(STT4.First, STT4.Second, STT4.Third); // 1 3 5
 ```
 
@@ -138,7 +133,6 @@ console.log(Status.Todo, Status.Doing, Status.Done); // Todo Doing Done
 ## 9. Type Aliases
 ```
 type CarYear = number
-
 type CarType = string
 
 type Car = {
@@ -146,9 +140,7 @@ type Car = {
   type: CarType,
 }
 
-
 const carYear: CarYear = 2001
-
 const carType: CarType = "Toyota"
 
 const car: Car = {
