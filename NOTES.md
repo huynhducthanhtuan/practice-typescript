@@ -1,6 +1,6 @@
 ## 1. Compile TS to JS: 
 ```
-tsc ts-file.js
+tsc ts-file-name.ts
 ```
 
 
@@ -20,15 +20,19 @@ const name = "Tuan";
 ### any: disable type checking
 ```
 let a: any = 1;
-a = "hello";
-a = true;
+
+a = "hello";  // OK
+
+a = true;  // OK
 ```
 
 ### unknown: safer alternative to any
 ```
 let a: unknown = 1;
-a = "hello";
-a = true;
+
+a = "hello";  // OK
+
+a = true;  // OK
 ```
 
 ### never: throw error whenever it is defined
@@ -41,6 +45,7 @@ let x: never = true;
 ### undefined & null: same in JS
 ```
 let y: undefined = undefined;
+
 let z: null = null;
 ```
 
@@ -48,6 +53,7 @@ let z: null = null;
 ## 4. readonly: chỉ dùng với array và tupple
 ```
 let aray: readonly number[] = [1, 2, 3];
+
 let tuple: readonly [number, boolean, string] = [5, false, "Coding"];
 ```
 
@@ -55,6 +61,7 @@ let tuple: readonly [number, boolean, string] = [5, false, "Coding"];
 ## 5. constant: const, as const
 ```
 const a1: number = 1;
+
 const a2: number = 1 as const;
 ```
 
@@ -72,7 +79,8 @@ console.log(tuple); // [ 5, true, 'A', 'B' ]
 const cat: { name: string, age?: number } = {
     name: "Doraemon"
 }
-cat.age = 1;
+
+cat.age = 1;  // OK
 ```
 
 
@@ -84,27 +92,34 @@ enum STT1 {
     Second,
     Third
 }
+
 console.log(STT1.First, STT1.Second, STT1.Third); // 0 1 2
+
 
 enum STT2 {
     First = 1,
     Second,
     Third
 }
+
 console.log(STT2.First, STT2.Second, STT2.Third); // 1 2 3
+
 
 enum STT3 {
     First = 1,
     Second = 3,
     Third
 }
+
 console.log(STT3.First, STT3.Second, STT3.Third); // 1 3 4
+
 
 enum STT4 {
     First = 1,
     Second = 3,
     Third = 5
 }
+
 console.log(STT4.First, STT4.Second, STT4.Third); // 1 3 5
 ```
 
@@ -115,6 +130,7 @@ enum Status {
     Doing = "Doing",
     Done = "Done"
 }
+
 console.log(Status.Todo, Status.Doing, Status.Done); // Todo Doing Done
 ```
 
@@ -122,14 +138,19 @@ console.log(Status.Todo, Status.Doing, Status.Done); // Todo Doing Done
 ## 9. Type Aliases
 ```
 type CarYear = number
+
 type CarType = string
+
 type Car = {
   year: CarYear,
   type: CarType,
 }
 
+
 const carYear: CarYear = 2001
+
 const carType: CarType = "Toyota"
+
 const car: Car = {
   year: carYear,
   type: carType
@@ -204,19 +225,23 @@ const squareFunction: Square = (value) => value ** 2;
 ## Casting with as
 ```
 let x: unknown = "hello";
+
 console.log(typeof (x as string)); // string
 ```
 
 ## Casting with <>
 ```
 let y: unknown = "hello";
+
 console.log(typeof (<string>y)); // string
 ```
 
 ## Force Casting: as unknown, as target type
 ```
-let x = 'hello';
-console.log(((x as unknown) as number));
+let x = '1';
+
+console.log(((x as unknown) as number));  // Expected: 1
+console.log(typeof ((x as unknown) as number));  // Expected: number
 ```
 
 ## 14. Generics
