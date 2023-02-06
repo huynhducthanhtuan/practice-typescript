@@ -1,10 +1,8 @@
-const world = "world";
-
-export function hello(who: string = world): string {
-    return `Hello ${who}! `;
+function func<S extends string | number, T extends string | number>(
+    a: S,
+    b: T
+): [S, T] {
+    return [a, b];
 }
 
-console.log(hello());
-
-let x = 1;
-console.log(typeof (x as unknown as string)); // string
+console.log(func("Score", 100));
