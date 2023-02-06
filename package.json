@@ -9,7 +9,8 @@
     "devDependencies": {},
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ts-node index.ts"
+        "start": "ts-node index.ts",
+        "start-test": "tsc index.ts && node index.js"
     },
     "keywords": [
         "practice-typescript"
