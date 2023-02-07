@@ -1,24 +1,27 @@
-type Point = () => { x: number; y: number };
+abstract class Shape {
+    // abstract property
+    public abstract id: number;
 
-const point: ReturnType<Point> = {
-    x: 10,
-    y: 20
-};
+    // abstract method
+    public abstract getArea(): number;
 
-// Same effect
-const point1: ReturnType<() => { x: number; y: number }> = {
-    x: 10,
-    y: 20
-};
+    public toString(): string {
+        return `Shape[area=${this.getArea()}]`;
+    }
+}
 
-// Same effect
-const point2: { x: number; y: number } = {
-    x: 10,
-    y: 20
-};
+class Square extends Shape {
+    public constructor(public id: number, public edge: number) {
+        super();
+    }
 
-// Same effect
-const point3 = {
-    x: 10,
-    y: 20
-};
+    // override base class's abstract method
+    public getArea(): number {
+        return this.edge ** 2;
+    }
+}
+
+const rec = new Square(1, 4);
+console.log(rec.id); // 1
+console.log(rec.getArea()); // 16
+console.log(rec.toString()); // Shape[area=16]

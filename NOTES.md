@@ -1,23 +1,27 @@
-## 1. Compile TS to JS: 
+## 1. Compile TS to JS:
+
 ```
 tsc ts-file-name.ts
 ```
 
-
 ## 2. Type Assignment: (Gán kiểu)
+
 ### Explicit Type (Kiểu tường minh)
+
 ```
 const name: string = "Tuan";
 ```
 
 ### Implicit Type (Kiểu ngầm định)
+
 ```
 const name = "Tuan";
 ```
 
-
 ## 3. Special Types
+
 ### any: disable type checking
+
 ```
 let a: any = 1;
 
@@ -27,6 +31,7 @@ a = true;  // OK
 ```
 
 ### unknown: safer alternative to any
+
 ```
 let a: unknown = 1;
 
@@ -36,37 +41,39 @@ a = true;  // OK
 ```
 
 ### never: throw error whenever it is defined
+
 ```
-let x: never = true; 
+let x: never = true;
 
 // Error: Type 'boolean' is not assignable to type 'never'.
 ```
 
 ### undefined & null: same in JS
+
 ```
 let y: undefined = undefined;
 
 let z: null = null;
 ```
 
-
 ## 4. readonly: chỉ dùng với array và tupple
+
 ```
 let aray: readonly number[] = [1, 2, 3];
 
 let tuple: readonly [number, boolean, string] = [5, false, "Coding"];
 ```
 
-
 ## 5. constant: const, as const
+
 ```
 const a1: number = 1;
 
 const a2: number = 1 as const;
 ```
 
-
 ## 6. tupple: typed array
+
 ```
 const tuple: [number, boolean, string] = [5, true, "A"];
 
@@ -75,8 +82,8 @@ tuple.push("B");
 console.log(tuple); // [ 5, true, 'A', 'B' ]
 ```
 
-
 ## 7. Object types:
+
 ```
 const cat: { name: string, age?: number } = {
     name: "Doraemon"
@@ -85,9 +92,10 @@ const cat: { name: string, age?: number } = {
 cat.age = 1;  // OK
 ```
 
-
 ## 8. enum: (~ class), a group of constants
+
 ## Numeric enum:
+
 ```
 enum STT1 {
     First,
@@ -119,6 +127,7 @@ console.log(STT4.First, STT4.Second, STT4.Third); // 1 3 5
 ```
 
 ## String enum:
+
 ```
 enum Status {
     Todo = "Todo",
@@ -129,8 +138,8 @@ enum Status {
 console.log(Status.Todo, Status.Doing, Status.Done); // Todo Doing Done
 ```
 
-
 ## 9. Type Aliases
+
 ```
 type CarYear = number
 type CarType = string
@@ -149,8 +158,8 @@ const car: Car = {
 };
 ```
 
-
 ## 10. Interfaces
+
 ```
 interface Rectangle {
   height: number,
@@ -173,8 +182,8 @@ const colorRectangle: ColorRectangle = {
 };
 ```
 
-
 ## 11. Union Types: Union | (OR)
+
 ```
 const a: string | number = 1
 
@@ -183,9 +192,10 @@ function printCode (code: string | number) {
 }
 ```
 
-
 ## 12. Function
+
 ## Return Type
+
 ```
 // Optional parameter
 function sum1 (a: number, b?: number): number {
@@ -199,6 +209,7 @@ function sum2 (a: number, b: number = 0): number {
 ```
 
 ## Void Return Type
+
 ```
 function print (): void {
   console.log("Hello");
@@ -206,15 +217,17 @@ function print (): void {
 ```
 
 ## Type Alias
+
 ```
 type Square = (value: number) => number;
 
 const squareFunction: Square = (value) => value ** 2;
 ```
 
-
 ## 13. Casting: the process of overriding a type
+
 ## Casting with as
+
 ```
 let x: unknown = "hello";
 
@@ -222,6 +235,7 @@ console.log(typeof (x as string)); // string
 ```
 
 ## Casting with <>
+
 ```
 let y: unknown = "hello";
 
@@ -229,6 +243,7 @@ console.log(typeof (<string>y)); // string
 ```
 
 ## Force Casting: as unknown, as target type
+
 ```
 let x = '1';
 
@@ -237,7 +252,9 @@ console.log(typeof ((x as unknown) as number));  // Expected: number
 ```
 
 ## 14. Generics
+
 ## Functions
+
 ```
 function func<X, Y>(a: X, b: Y): [X, Y] {
     return [a, b];
@@ -248,6 +265,7 @@ console.log(func<number[], boolean>([1, 2], true)); // [ [1, 2], true ]
 ```
 
 ## Classes
+
 ```
 class NameValue<X, Y> {
     private name: X | undefined;
@@ -283,6 +301,7 @@ console.log(value.getValue()); // 200
 ```
 
 ## Type Aliases
+
 ```
 type Wrapped<T> = { value: T };
 
@@ -291,6 +310,7 @@ const booleanWrapped: Wrapped<boolean> = { value: true };
 ```
 
 ## Default Value
+
 ```
 class NameValue<T = number> {
     constructor(private value: T) {}
@@ -308,6 +328,7 @@ console.log(value2.getValue()); // 200
 ```
 
 ## Extends
+
 ```
 function func<S extends string | number, T extends string | number>(a: S, b: T): [S, T] {
   return [a, b];
@@ -316,9 +337,10 @@ function func<S extends string | number, T extends string | number>(a: S, b: T):
 console.log(func("Score", 100));
 ```
 
-
 ## 15. keyof
+
 ## keyof with explicit keys
+
 ```
 interface Person {
   name: string;
@@ -328,10 +350,10 @@ interface Person {
 // `keyof Person` creates a union type of "name" and "age"
 // property: "name" | "age"
 function func (person: Person, property: keyof Person) {}
-
 ```
 
 ## keyof with index signatures
+
 ```
 type StringMap = { [key: string]: unknown };
 
@@ -339,8 +361,8 @@ type StringMap = { [key: string]: unknown };
 function func (property: keyof StringMap, value: string): StringMap {}
 ```
 
-
 ## 16. Nullish Coalescence (??): Return right-value if left-value is `null` or `undefined`
+
 ```
 console.log(0 ?? "hello"); // 0
 console.log(false ?? "hello"); // false
@@ -349,10 +371,10 @@ console.log(null ?? "hello"); // "hello"
 console.log(undefined ?? "hello"); // "hello"
 ```
 
-
-
 ## 17. Utility Types
+
 ## Partial: All properties in an object to be `optional`.
+
 ```
 interface Point {
     x: number;
@@ -366,6 +388,7 @@ let pointPart3: Partial<Point> = { y: 0 }; // OK
 ```
 
 ## Required: All properties in an object to be `required`.
+
 ```
 interface Car {
     name: string;
@@ -379,6 +402,7 @@ let myCar: Required<Car> = {
 ```
 
 ## Record: Define an object type with a specific key type and value type.
+
 ```
 const nameAgeMap: Record<string, number> = {
   'Alice': 21,
@@ -387,6 +411,7 @@ const nameAgeMap: Record<string, number> = {
 ```
 
 ## Omit: Removes keys from an object type.
+
 ```
 interface Person {
   name: string;
@@ -402,6 +427,7 @@ const bob: Omit<Person, 'age' | 'location'> = {
 ```
 
 ## Pick: Removes all but the specified keys from an object type.
+
 ```
 interface Person {
     name: string;
@@ -417,6 +443,7 @@ const bob: Pick<Person, "name"> = {
 ```
 
 ## Exclude: Removes types from a union.
+
 ```
 type Types = string | number;
 
@@ -425,6 +452,7 @@ const value2: Exclude<Types, string> = "hello"; // a string cannot be used here 
 ```
 
 ## ReturnType: Extracts the return type of a function type.
+
 ```
 type Point = () => { x: number; y: number };
 
@@ -452,6 +480,253 @@ const point3 = {
 };
 ```
 
-
-
 ## 18. Classes
+
+## Class Definition
+
+```
+// Default visibility for properties/methods in Typescript class is `PUBLIC`
+class Shape {
+    id: number | undefined = 1;
+    private getArea(): number {
+        return 0;
+    }
+    protected getPerimeter(): number {
+        return 0;
+    }
+}
+
+const s = new Shape();
+console.log(s.id); // 1
+console.log(s.getArea()); // Error
+console.log(s.getPerimeter()); // Error
+```
+
+```
+class Person {
+    // Declare member - Way 1
+    // private name: string;
+
+    // Readonly member - Must initialize
+    private readonly age: number = 1;
+
+    // Declare member - Way 2
+    public constructor(private name: string) {
+        this.name = name;
+    }
+
+    // public getter/setter methods
+    public getAge(): number {
+        return this.age;
+    }
+}
+
+// Create an instance of Object Person
+const person = new Person("Jane");
+console.log(person.getAge());
+```
+
+```
+class Person {
+    private name: string | undefined;
+
+    public getAge(): string | undefined {
+        return this.name;
+    }
+}
+
+console.log(new Person().getAge()); // undefined
+```
+
+```
+class Person<T> {
+    private name: T | undefined;
+
+    constructor(name: T | undefined) {
+        this.name = name;
+    }
+
+    public getName(): T | undefined {
+        return this.name;
+    }
+}
+
+const person = new Person<string>("Tuan");
+console.log(person.getName()); // Tuan
+```
+
+## Inheritance: implements
+
+## Phải khai báo và sử dụng lại tất cả các thuộc tính, phương thức theo đúng modifier access của interface/class mà lớp kế thừa
+
+## Class implements interface (common using)
+
+```
+interface Shape {
+    id: number;
+    getArea: () => number;
+}
+
+class Square implements Shape {
+    // Reuse Shape property
+    public id: number = 10;
+
+    public constructor(protected edge: number) {}
+
+    // Reuse Shape method
+    public getArea(): number {
+        return this.edge ** 2;
+    }
+
+    // This method belongs to Square
+    public getPerimeter(): number {
+        return this.edge * 4;
+    }
+}
+
+const s = new Square(2);
+console.log(s.id); // 10
+console.log(s.getArea()); // 4
+console.log(s.getPerimeter()); // 8
+```
+
+## Class implements class
+
+```
+class Shape {
+    id: number = 1;
+    getArea(): number {
+        return 0;
+    }
+}
+
+// Square (base class) inherited from Shape (derived class)
+class Square implements Shape {
+    // Reuse Shape property - id
+    public constructor(public id: number, private edge: number) {}
+
+    // Reuse Shape method
+    public getArea(): number {
+        return this.edge ** 2;
+    }
+
+    // This method belongs to Square
+    public getPerimeter(): number {
+        return this.edge * 4;
+    }
+}
+
+const s = new Square(10, 2);
+console.log(s.id); // 10
+console.log(s.getArea()); // 4
+console.log(s.getPerimeter()); // 8
+```
+
+## Inheritance: extends
+
+## A class can only extends one other class.
+
+```
+interface Shape {
+  getArea: () => number;
+}
+
+class Rectangle implements Shape {
+  // using protected for these members allows access from classes that extend from this class, such as Square
+  public constructor(protected readonly width: number, protected readonly height: number) {}
+
+  public getArea(): number {
+    return this.width * this.height;
+  }
+
+  public toString(): string {
+    return `Rectangle[width=${this.width}, height=${this.height}]`;
+  }
+}
+
+class Square extends Rectangle {
+  public constructor(width: number) {
+    super(width, width);
+  }
+
+  // this toString replaces the toString from Rectangle
+  public override toString(): string {
+    return `Square[width=${this.width}]`;
+  }
+}
+```
+
+```
+interface Shape {
+    getArea: () => number;
+}
+
+class Rectangle implements Shape {
+    // protected allow access from classes extend from this class, ex: Square
+    constructor(
+        protected readonly width: number,
+        protected readonly height: number
+    ) {}
+
+    getArea(): number {
+        return this.width * this.height;
+    }
+
+    toString(): string {
+        return `Rectangle[${this.width}, ${this.height}]`;
+    }
+}
+
+class Square extends Rectangle {
+    // Must contains super calls
+    constructor(width: number) {
+        super(width, width);
+
+        // Access base class properties through `super`
+        console.log(super.height); // undefined
+        console.log(super.width); // undefined
+    }
+
+    // override Rectangle's toString()
+    toString(): string {
+        return `Square[${this.width}]`;
+    }
+}
+
+const s = new Square(4);
+console.log(s.toString()); // Square[4]
+console.log(s.height); // Error
+console.log(s.width); // Error
+```
+
+## Abstract Class
+
+```
+abstract class Shape {
+    // abstract property
+    public abstract id: number;
+
+    // abstract method
+    public abstract getArea(): number;
+
+    public toString(): string {
+        return `Shape[area=${this.getArea()}]`;
+    }
+}
+
+class Square extends Shape {
+    public constructor(public id: number, public edge: number) {
+        super();
+    }
+
+    // override base class's abstract method
+    public getArea(): number {
+        return this.edge ** 2;
+    }
+}
+
+const rec = new Square(1, 4);
+console.log(rec.id); // 1
+console.log(rec.getArea()); // 16
+console.log(rec.toString()); // Shape[area=16]
+```
