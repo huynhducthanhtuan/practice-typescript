@@ -1,8 +1,24 @@
-function func<S extends string | number, T extends string | number>(
-    a: S,
-    b: T
-): [S, T] {
-    return [a, b];
-}
+type Point = () => { x: number; y: number };
 
-console.log(func("Score", 100));
+const point: ReturnType<Point> = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point1: ReturnType<() => { x: number; y: number }> = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point2: { x: number; y: number } = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point3 = {
+    x: 10,
+    y: 20
+};

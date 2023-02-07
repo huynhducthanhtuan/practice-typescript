@@ -315,3 +315,143 @@ function func<S extends string | number, T extends string | number>(a: S, b: T):
 
 console.log(func("Score", 100));
 ```
+
+
+## 15. keyof
+## keyof with explicit keys
+```
+interface Person {
+  name: string;
+  age: number;
+}
+
+// `keyof Person` creates a union type of "name" and "age"
+// property: "name" | "age"
+function func (person: Person, property: keyof Person) {}
+
+```
+
+## keyof with index signatures
+```
+type StringMap = { [key: string]: unknown };
+
+// `keyof StringMap` resolves to `string`
+function func (property: keyof StringMap, value: string): StringMap {}
+```
+
+
+## 16. Nullish Coalescence (??): Return right-value if left-value is `null` or `undefined`
+```
+console.log(0 ?? "hello"); // 0
+console.log(false ?? "hello"); // false
+
+console.log(null ?? "hello"); // "hello"
+console.log(undefined ?? "hello"); // "hello"
+```
+
+
+
+## 17. Utility Types
+## Partial: All properties in an object to be `optional`.
+```
+interface Point {
+    x: number;
+    y: number;
+}
+
+// `Partial` allows x and y to be optional
+let pointPart1: Partial<Point> = { x: 0, y: 0 };
+let pointPart2: Partial<Point> = { y: 0 }; // OK
+let pointPart3: Partial<Point> = { y: 0 }; // OK
+```
+
+## Required: All properties in an object to be `required`.
+```
+interface Car {
+    name: string;
+    price?: number;
+}
+
+let myCar: Required<Car> = {
+    name: "Ford",
+    price: 12000 // `Required` forces mileage to be defined
+};
+```
+
+## Record: Define an object type with a specific key type and value type.
+```
+const nameAgeMap: Record<string, number> = {
+  'Alice': 21,
+  'Bob': 25
+};
+```
+
+## Omit: Removes keys from an object type.
+```
+interface Person {
+  name: string;
+  age: number;
+  location?: string;
+}
+
+const bob: Omit<Person, 'age' | 'location'> = {
+  name: 'Bob',
+  // location: "a", // Error
+  // `Omit` has removed age and location from the type and they can't be defined here
+};
+```
+
+## Pick: Removes all but the specified keys from an object type.
+```
+interface Person {
+    name: string;
+    age: number;
+    location?: string;
+}
+
+const bob: Pick<Person, "name"> = {
+    name: "Bob",
+    // location: "a", // Error
+    // `Pick` has only kept name, so age and location were removed from the type and they can't be defined here
+};
+```
+
+## Exclude: Removes types from a union.
+```
+type Types = string | number;
+
+const value1: Exclude<Types, string> = 1; // OK
+const value2: Exclude<Types, string> = "hello"; // a string cannot be used here since Exclude removed it from the type.
+```
+
+## ReturnType: Extracts the return type of a function type.
+```
+type Point = () => { x: number; y: number };
+
+const point: ReturnType<Point> = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point1: ReturnType<() => { x: number; y: number }> = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point2: { x: number; y: number } = {
+    x: 10,
+    y: 20
+};
+
+// Same effect
+const point3 = {
+    x: 10,
+    y: 20
+};
+```
+
+
+
+## 18. Classes
